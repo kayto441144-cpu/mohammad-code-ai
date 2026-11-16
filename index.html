@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>محمد كود | الذكاء الاصطناعي</title>
+
+  <meta name="description" content="محمد كود - أدوات الذكاء الاصطناعي وإنشاء المحتوى">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #07090d;
+      --card: #10141c;
+      --card2: #151a24;
+      --text: #ffffff;
+      --muted: #9ca3af;
+      --primary: #7c3aed;
+      --primary2: #a855f7;
+      --border: rgba(255,255,255,.09);
+      --success: #22c55e;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Tahoma, sans-serif;
+      background:
+        radial-gradient(circle at 50% -10%, rgba(124,58,237,.25), transparent 35%),
+        var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    /* HEADER */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(18px);
+      background: rgba(7,9,13,.78);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      max-width: 1100px;
+      margin: auto;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--primary), var(--primary2));
+      box-shadow: 0 0 25px rgba(124,58,237,.35);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 8px;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      padding: 9px 12px;
+      border-radius: 9px;
+      transition: .2s;
+    }
+
+    .nav-links a:hover {
+      color: white;
+      background: rgba(255,255,255,.06);
+    }
+
+    /* HERO */
+
+    .hero {
+      max-width: 1100px;
+      margin: auto;
+      padding: 90px 20px 60px;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 14px;
+      border: 1px solid rgba(168,85,247,.25);
+      background: rgba(124,58,237,.1);
+      color: #d8b4fe;
+      border-radius: 999px;
+      font-size: 13px;
+      margin-bottom: 25px;
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--success);
+      box-shadow: 0 0 10px var(--success);
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 8vw, 78px);
+      line-height: 1.05;
+      margin-bottom: 22px;
+      font-weight: 900;
+    }
+
+    .gradient-text {
+      background: linear-gradient(
+        90deg,
+        #fff,
+        #c084fc,
+        #8b5cf6,
+        #fff
+      );
+      background-size: 250%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: gradient 5s linear infinite;
+    }
+
+    @keyframes gradient {
+      to {
+        background-position: 250%;
+      }
+    }
+
+    .hero p {
+      max-width: 650px;
+      margin: auto;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.9;
+    }
+
+    /* MAIN */
+
+    main {
+      max-width: 1100px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .section-title {
+      margin: 50px 0 20px;
+    }
+
+    .section-title h2 {
+      font-size: 28px;
+      margin-bottom: 7px;
+    }
+
+    .section-title p {
+      color: var(--muted);
+    }
+
+    /* CARDS */
+
+    .tools {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: linear-gradient(
+        145deg,
+        rgba(255,255,255,.055),
+        rgba(255,255,255,.018)
+      );
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 24px;
+      transition: .25s;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(168,85,247,.35);
+      box-shadow: 0 15px 45px rgba(0,0,0,.25);
+    }
+
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      background: rgba(124,58,237,.15);
+      border-radius: 14px;
+      font-size: 22px;
+      margin-bottom: 16px;
+    }
+
+    .card h3 {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    .card-description {
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    /* PROMPT GENERATOR */
+
+    textarea {
+      width: 100%;
+      min-height: 150px;
+      resize: vertical;
+      padding: 15px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: #090c12;
+      color: white;
+      outline: none;
+      line-height: 1.7;
+    }
+
+    textarea:focus,
+    input:focus {
+      border-color: var(--primary2);
+      box-shadow: 0 0 0 3px rgba(124,58,237,.1);
+    }
+
+    .options {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin: 14px 0;
+    }
+
+    select,
+    input[type="text"] {
+      width: 100%;
+      padding: 13px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: #090c12;
+      color: white;
+      outline: none;
+    }
+
+    .primary-btn {
+      width: 100%;
+      border: none;
+      padding: 14px;
+      border-radius: 13px;
+      color: white;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--primary), var(--primary2));
+      box-shadow: 0 8px 25px rgba(124,58,237,.25);
+      transition: .2s;
+    }
+
+    .primary-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(124,58,237,.35);
+    }
+
+    .secondary-btn {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      color: white;
+      padding: 12px 16px;
+      border-radius: 12px;
+    }
+
+    /* IMAGE UPLOAD */
+
+    .upload-box {
+      border: 2px dashed rgba(168,85,247,.35);
+      border-radius: 18px;
+      padding: 30px 20px;
+      text-align: center;
+      background: rgba(124,58,237,.04);
+      transition: .2s;
+    }
+
+    .upload-box:hover {
+      border-color: var(--primary2);
+      background: rgba(124,58,237,.08);
+    }
+
+    .upload-box input {
+      display: none;
+    }
+
+    .upload-label {
+      display: block;
+      cursor: pointer;
+    }
+
+    .upload-icon {
+      font-size: 38px;
+      margin-bottom: 10px;
+    }
+
+    .upload-label strong {
+      display: block;
+      margin-bottom: 7px;
+    }
+
+    .upload-label span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    #preview {
+      width: 100%;
+      max-height: 350px;
+      object-fit: contain;
+      border-radius: 14px;
+      margin-top: 18px;
+      display: none;
+    }
+
+    /* FEATURES */
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+    .feature {
+      padding: 22px;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.025);
+    }
+
+    .feature span {
+      font-size: 25px;
+    }
+
+    .feature h3 {
+      margin: 12px 0 7px;
+    }
+
+    .feature p {
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      text-align: center;
+      padding: 60px 20px 30px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* TOAST */
+
+    .toast {
+      position: fixed;
+      bottom: 25px;
+      left: 50%;
+      transform: translate(-50%, 100px);
+      background: #171b25;
+      border: 1px solid var(--border);
+      padding: 13px 18px;
+      border-radius: 12px;
+      z-index: 999;
+      opacity: 0;
+      transition: .3s;
+    }
+
+    .toast.show {
+      transform: translate(-50%, 0);
+      opacity: 1;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 700px) {
+
+      .nav {
+        padding: 13px 15px;
+      }
+
+      .nav-links a {
+        display: none;
+      }
+
+      .hero {
+        padding: 65px 18px 45px;
+      }
+
+      .hero h1 {
+        font-size: 46px;
+      }
+
+      .hero p {
+        font-size: 15px;
+      }
+
+      main {
+        padding: 15px;
+      }
+
+      .tools {
+        grid-template-columns: 1fr;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .options {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        padding: 19px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+
+  <header>
+    <nav class="nav">
+
+      <div class="logo">
+        <div class="logo-icon">✦</div>
+        <span>محمد كود</span>
+      </div>
+
+      <div class="nav-links">
+        <a href="#tools">الأدوات</a>
+        <a href="#features">المميزات</a>
+        <a href="#about">عن الموقع</a>
+      </div>
+
+    </nav>
+  </header>
+
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="badge">
+      <span class="dot"></span>
+      منصة الذكاء الاصطناعي
+    </div>
+
+    <h1>
+      اصنع أفكارك<br>
+      <span class="gradient-text">بالذكاء الاصطناعي</span>
+    </h1>
+
+    <p>
+      مرحباً بك في محمد كود — مساحة بسيطة وسريعة
+      لإنشاء الأفكار، البرومبتات والمحتوى باستخدام أدوات الذكاء الاصطناعي.
+    </p>
+
+  </section>
+
+
+  <main>
+
+    <!-- TOOLS -->
+
+    <div class="section-title" id="tools">
+      <h2>أدوات محمد كود</h2>
+      <p>ابدأ باستخدام الأدوات الموجودة في الموقع.</p>
+    </div>
+
+
+    <div class="tools">
+
+
+      <!-- PROMPT TOOL -->
+
+      <div class="card">
+
+        <div class="card-icon">✨</div>
+
+        <h3>مولّد البرومبت</h3>
+
+        <p class="card-description">
+          اكتب فكرتك وسنحوّلها إلى برومبت أكثر تفصيلاً ووضوحاً.
+        </p>
+
+        <textarea
+          id="idea"
+          placeholder="مثال: أريد صورة لشخص يمشي في مدينة مستقبلية..."
+        ></textarea>
+
+        <div class="options">
+
+          <select id="style">
+            <option value="سينمائي واقعي">سينمائي واقعي</option>
+            <option value="تصوير احترافي">تصوير احترافي</option>
+            <option value="أنمي">أنمي</option>
+            <option value="خيال علمي">خيال علمي</option>
+            <option value="إعلان تجاري فاخر">إعلان تجاري فاخر</option>
+          </select>
+
+          <select id="ratio">
+            <option value="9:16">عمودي 9:16</option>
+            <option value="4:5">عمودي 4:5</option>
+            <option value="1:1">مربع 1:1</option>
+            <option value="16:9">أفقي 16:9</option>
+          </select>
+
+        </div>
+
+        <button
+          class="primary-btn"
+          onclick="generatePrompt()">
+          ✨ إنشاء البرومبت
+        </button>
+
+        <div style="height:12px"></div>
+
+        <textarea
+          id="result"
+          placeholder="سيظهر البرومبت هنا..."
+          readonly
+          style="display:none">
+        </textarea>
+
+        <button
+          id="copyBtn"
+          class="secondary-btn"
+          onclick="copyPrompt()"
+          style="display:none; width:100%; margin-top:10px">
+          📋 نسخ البرومبت
+        </button>
+
+      </div>
+
+
+      <!-- IMAGE TOOL -->
+
+      <div class="card">
+
+        <div class="card-icon">🖼️</div>
+
+        <h3>معاينة الصور</h3>
+
+        <p class="card-description">
+          ارفع صورة من جهازك لمعاينتها داخل الموقع.
+          سنضيف أدوات تعديل وإنشاء الصور الفعلية في المرحلة التالية.
+        </p>
+
+        <div class="upload-box">
+
+          <label
+            class="upload-label"
+            for="imageInput">
+
+            <div class="upload-icon">📸</div>
+
+            <strong>
+              اضغط لاختيار صورة
+            </strong>
+
+            <span>
+              PNG / JPG / WEBP
+            </span>
+
+          </label>
+
+          <input
+            id="imageInput"
+            type="file"
+            accept="image/*">
+
+          <img
+            id="preview"
+            alt="معاينة الصورة">
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- FEATURES -->
+
+    <div class="section-title" id="features">
+      <h2>لماذا محمد كود؟</h2>
+      <p>نبني الموقع خطوة خطوة، بدون تعقيد.</p>
+    </div>
+
+
+    <div class="features">
+
+      <div class="feature">
+        <span>⚡</span>
+        <h3>سريع</h3>
+        <p>
+          واجهة خفيفة ومناسبة للجوال والكمبيوتر.
+        </p>
+      </div>
+
+      <div class="feature">
+        <span>🤖</span>
+        <h3>ذكاء اصطناعي</h3>
+        <p>
+          سنربط الموقع لاحقاً بخدمات الذكاء الاصطناعي الحقيقية.
+        </p>
+      </div>
+
+      <div class="feature">
+        <span>🔒</span>
+        <h3>قابل للتطوير</h3>
+        <p>
+          الموقع مبني بطريقة تسمح بإضافة أدوات جديدة لاحقاً.
+        </p>
+      </div>
+
+    </div>
+
+
+    <!-- ABOUT -->
+
+    <div class="section-title" id="about">
+      <h2>عن محمد كود</h2>
+    </div>
+
+    <div class="card">
+
+      <p class="card-description" style="margin:0">
+        محمد كود هو مشروع شخصي يهدف إلى جمع أدوات الذكاء الاصطناعي
+        في واجهة عربية بسيطة وسهلة الاستخدام.
+      </p>
+
+    </div>
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+    © 2026 محمد كود — جميع الحقوق محفوظة
+  </footer>
+
+
+  <div class="toast" id="toast">
+    تم نسخ البرومبت ✓
+  </div>
+
+
+  <script>
+
+    /* PROMPT GENERATOR */
+
+    function generatePrompt() {
+
+      const idea = document.getElementById("idea").value.trim();
+      const style = document.getElementById("style").value;
+      const ratio = document.getElementById("ratio").value;
+
+      if (!idea) {
+        showToast("اكتب فكرتك أولاً");
+        return;
+      }
+
+      const prompt =
+`Create a highly detailed ${style} image based on this concept:
+
+"${idea}"
+
+Visual style: ${style}
+Composition: professional cinematic composition
+Lighting: dramatic and realistic lighting
+Details: highly detailed, realistic textures, sharp subject separation
+Quality: ultra detailed, high quality, professional photography
+Aspect ratio: ${ratio}
+
+Preserve the main concept exactly while improving the visual storytelling, composition and atmosphere.`;
+
+      const result = document.getElementById("result");
+      const copyBtn = document.getElementById("copyBtn");
+
+      result.value = prompt;
+      result.style.display = "block";
+      copyBtn.style.display = "block";
+
+      showToast("تم إنشاء البرومبت ✓");
+    }
+
+
+    /* COPY */
+
+    async function copyPrompt() {
+
+      const result = document.getElementById("result");
+
+      if (!result.value) return;
+
+      try {
+
+        await navigator.clipboard.writeText(result.value);
+
+        showToast("تم نسخ البرومبت ✓");
+
+      } catch {
+
+        result.select();
+        document.execCommand("copy");
+
+        showToast("تم النسخ ✓");
+      }
+    }
+
+
+    /* IMAGE PREVIEW */
+
+    document
+      .getElementById("imageInput")
+      .addEventListener("change", function(event) {
+
+        const file = event.target.files[0];
+
+        if (!file) return;
+
+        if (!file.type.startsWith("image/")) {
+          showToast("الملف ليس صورة");
+          return;
+        }
+
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+
+          const preview = document.getElementById("preview");
+
+          preview.src = e.target.result;
+          preview.style.display = "block";
+
+        };
+
+        reader.readAsDataURL(file);
+
+      });
+
+
+    /* TOAST */
+
+    let toastTimer;
+
+    function showToast(message) {
+
+      const toast = document.getElementById("toast");
+
+      toast.textContent = message;
+      toast.classList.add("show");
+
+      clearTimeout(toastTimer);
+
+      toastTimer = setTimeout(() => {
+        toast.classList.remove("show");
+      }, 2200);
+    }
+
+  </script>
+
+</body>
+  </html>
